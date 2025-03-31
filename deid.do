@@ -1,6 +1,6 @@
 global data "C:\Users\wb596077\OneDrive - WBG\Gender\"
 
-global country "Rwanda"
+global country "El Salvador"
 global round "midline"
 
 import delimited "$data\$country\\${round}_deid.csv", clear
@@ -12,11 +12,11 @@ if "${round}" == "baseline" {
 	
 	* Common variables across all datasets
 	drop a_enum_name* /// names
-		c_birthdate_* /// date of births
-		g2_registry_date g13_wfp_survey_date_* /// dates
+		c_birthdate_* /// date of births 
 		county district subdistrict village /// geographic identifiers
 		treat /// treatment variables
 		comment_final*
+		*g2_registry_date g13_wfp_survey_date_* // dates
 	
 	* Loops for specific countries
 	if "${country}" == "Rwanda" {
@@ -56,19 +56,19 @@ if "${round}" == "midline" {
 	
 	* Common variables across all datasets
 	drop a_enum_name* /// names
-		c_birthdate_* /// date of births
-		g2_registry_date g13_wfp_survey_date_* g17_bis_wfp_transfer_date_* /// dates
+		c_birthdate_* /// date of births 
 		a_level* county district subdistrict village /// geographic identifiers
 		treat /// treatment variables
 		comment_final*
+		*g2_registry_date g13_wfp_survey_date_* g17_bis_wfp_transfer_date_* // dates
 	
 	* Loops for specific countries
 	if "${country}" == "Rwanda" {
 		* Dropping variables that contain PII data
-		drop g213_2_wfp_mob_date g222_wfp_work_date /// dates
-		site /// geographic identifiers
+		drop site /// geographic identifiers 
 		treatment /// treatment variables
 		scope_id*
+		*g213_2_wfp_mob_date g222_wfp_work_date // dates
 	}
 	
 	* No extra variables to drop for Haiti so loop skipped
