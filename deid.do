@@ -1,6 +1,6 @@
 global data "C:\Users\wb596077\OneDrive - WBG\Gender\"
 
-global country "Haiti"
+global country "Kenya"
 global round "endline"
 
 import delimited "$data\$country\\${round}_deid.csv", clear
@@ -118,13 +118,13 @@ if "${round}" == "endline" {
 		*g213_2_wfp_mob_date g222_wfp_work_date // dates
 	}
 	
-	/* No extra variables to drop for Haiti so loop skipped
+	* No extra variables to drop for Haiti so loop skipped
 
 	if "${country}" == "Kenya" {
 		* Dropping variables that contain PII data
 		drop m_decision_visits_label m_cons_attitude_3_label /// names
 		site // geographic identifiers
-	}*/
+	}
 
 	if "${country}" == "El Salvador" {
 		* Dropping variables that contain PII data
