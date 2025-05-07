@@ -1,7 +1,7 @@
 global data "C:\Users\wb596077\OneDrive - WBG\Gender\"
 
-global country "Kenya"
-global round "endline"
+global country "Haiti" // options - Rwanda, Haiti, Kenya, El Salvador
+global round "hf" // options - baseline, midline, endline, hf (only for Haiti)
 
 import delimited "$data\$country\\${round}_deid.csv", clear
 
@@ -135,3 +135,14 @@ if "${round}" == "endline" {
 	save "$data\$country\endline_deid.dta", replace
 
 }
+
+if "${round}" == "hf" & "${country}" == "Haiti" {
+	drop a_enum_name*  /// names
+	a3_level1 a4_level2 a5_level3 a6_level4 county district subdistrict village /// geographic identifiers
+	treat /// treatment variables
+	comment_final*
+	*g17_bis_wfp_transfer_date_* // dates
+	
+	save "$data\$country\hf_deid.dta", replace
+}
+ 
